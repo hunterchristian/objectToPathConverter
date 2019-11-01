@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 const fs = require('fs');
 
 const PROCESSED_DXF_FILES_DIR_NAME_PREFIX = 'processedDXF';
-const DEFAULT_GENERATED_DXF_DIR = 'C:/Users/Hunter/source/repos/Mason/bin/Debug/generatedDXF/';
+const DEFAULT_GENERATED_DXF_DIR = './generatedDXF/';
 const RUN_OBJECT_TO_PATH_FOR_FILE_LOCATION = 'runObjectToPathForFile.bat';
 
 let generatedDXFDirectory;
