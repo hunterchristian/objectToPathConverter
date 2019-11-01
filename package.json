@@ -1,0 +1,16 @@
+{
+  "name": "objectToPathConverter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "runObjectToPathForDir.js",
+  "scripts": {
+    "start": "node runObjectToPathForDir.js",
+    "release": "rm -rf release && mkdir release && cd release && pkg ../runObjectToPathForDir.js && cp ../runObjectToPathForFile.bat ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "pkg": "^4.4.0"
+  }
+}
