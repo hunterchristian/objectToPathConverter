@@ -5,12 +5,15 @@
   "main": "runObjectToPathForDir.js",
   "scripts": {
     "start": "node runObjectToPathForDir.js",
-    "release": "rm -rf release && mkdir release && cd release && pkg ../runObjectToPathForDir.js && cp ../runObjectToPathForFile.bat ."
+    "release": "rm -rf release && mkdir release && cd release && pkg ../runObjectToPathForDir.js --targets node10-win-x64 && cp ../runObjectToPathForFile.bat ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "pkg": "^4.4.0"
+  },
+  "dependencies": {
+    "rimraf": "^3.0.0"
   }
 }

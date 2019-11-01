@@ -1,8 +1,9 @@
 const { spawn } = require('child_process');
 const fs = require('fs');
+const rimraf = require('rimraf');
 
 const PROCESSED_DXF_FILES_DIR_NAME_PREFIX = 'processedDXF';
-const DEFAULT_GENERATED_DXF_DIR = 'C:/Users/Hunter/source/repos/Mason/bin/Debug/generatedDXF/';
+const DEFAULT_GENERATED_DXF_DIR = '../generatedDXF/';
 const RUN_OBJECT_TO_PATH_FOR_FILE_LOCATION = 'runObjectToPathForFile.bat';
 
 let generatedDXFDirectory;
@@ -42,6 +43,7 @@ const spawnProcessAndAwaitCompletion = async (processToBeSpawned, processArgumen
 
         ls.stderr.on('data', function (data) {
             console.log('stderr: ' + data);
+            throw data;
         });
 
         ls.on('exit', function (code) {
@@ -64,11 +66,18 @@ async function stepThroughFiles(files) {
     }
 }
 
-fs.mkdirSync(processedDXFFilesDirName);
 fs.readdir(generatedDXFDirectory, async (err, files) => {
     if (files.length === 0) {
         console.error(`ERROR: no files found in directory: ${ generatedDXFDirectory }`);
         process.exit(1);
     }
-    await stepThroughFiles(files);
+
+    fs.mkdirSync(processedDXFFilesDirName);
+    try {
+        await stepThroughFiles(files);
+    } catch (err) {
+        // Delete processed directory since an error occurred and results are likely corrupted
+        rimraf.sync(processedDXFFilesDirName);
+        process.exit(1);
+    }
 });
