@@ -54,7 +54,7 @@ const spawnProcessAndAwaitCompletion = async (processToBeSpawned, processArgumen
 
 async function stepThroughFiles(files) {
     const fileName = files.shift();
-    const fullFilePath = DEFAULT_GENERATED_DXF_DIR + fileName;
+    const fullFilePath = generatedDXFDirectory + fileName;
     await spawnProcessAndAwaitCompletion(RUN_OBJECT_TO_PATH_FOR_FILE_LOCATION, [fullFilePath]);
     fs.renameSync(fullFilePath, processedDXFFilesDirName + fileName);
     
