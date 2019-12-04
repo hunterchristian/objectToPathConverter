@@ -3,7 +3,7 @@ const fs = require('fs');
 const rimraf = require('rimraf');
 
 const PROCESSED_DXF_FILES_DIR_NAME_PREFIX = 'processedDXF';
-const DEFAULT_GENERATED_DXF_DIR = '../generatedDXF/';
+const DEFAULT_GENERATED_DXF_DIR = require('os').homedir() + '\\generatedDXF\\';
 const RUN_OBJECT_TO_PATH_FOR_FILE_LOCATION = 'runObjectToPathForFile.bat';
 
 let generatedDXFDirectory;
